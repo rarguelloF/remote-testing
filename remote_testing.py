@@ -61,7 +61,7 @@ class sshConnection():
                     stdin, stdout, stderr = self.connection.exec_command(command)
                 except SSHException, e:
                     if i<3:
-                        print '[+] Error en la conexion SSH: %s.\n' % e
+                        print '[+] Error en la conexion SSH: %s.' % e
                         print 'Volviendo a intentar conectar... (intento %s de 3)' % i
                         err_code = self.connect()
                         i+=1
