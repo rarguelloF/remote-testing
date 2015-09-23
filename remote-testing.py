@@ -140,6 +140,9 @@ def Comprobar_Contador_ACL(conn, doc):
     
     src = raw_input("Introduzca IP origen \n")
     dst = raw_input("Introduzca IP destino \n")
+    
+    print "packet = IP(src=%s, dst=%s)/ICMP()" % (src, dst)
+    print "send(packet*3)"
 
     write_to_doc(doc, "packet = IP(src=%s, dst=%s)/ICMP()" % (src, dst), 'normal2', 'garamond', 12)
     write_to_doc(doc, "send(packet*3)", 'normal2', 'garamond', 12)
