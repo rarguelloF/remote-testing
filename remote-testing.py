@@ -170,6 +170,11 @@ def Comprobar_Contador_ACL(conn, doc):
 
     return 0
 
+###########################################
+#           OTRAS FUNCIONES               #
+###########################################
+
+
 def read_config_file(filename):
     '''
     Parsea el fichero de configuracion especificado con la
