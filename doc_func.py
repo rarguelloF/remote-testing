@@ -15,10 +15,10 @@ DOC_NAME = 'DEFAULT_NAME'
 def create(title):
     DOC_NAME = title
 
-    doc = Document()
-    doc.add_heading(title, 0)
+    document = Document()
+    document.add_heading(title, 0)
     document.save('%s.docx' % DOC_NAME)
-    return doc
+    return document
 
 def end_doc(document):
     document.add_page_break()
