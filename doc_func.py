@@ -13,10 +13,10 @@ COLOURS = {
 DOC_NAME = 'DEFAULT_NAME'
 
 def create(title):
-    DOC_NAME = title
+    global DOC_NAME = title
 
     document = Document()
-    document.add_heading(title, 0)
+    document.add_heading(DOC_NAME, 0)
     document.save('%s.docx' % DOC_NAME)
     return document
 
