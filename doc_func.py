@@ -13,12 +13,14 @@ COLOURS = {
 DOC_NAME = 'DEFAULT_NAME'
 
 def create(title):
+    DOC_NAME = title
+
     doc = Document()
     doc.add_heading(title, 0)
-    DOC_NAME = title
+    document.save('%s.docx' % DOC_NAME)
     return doc
 
-def save_doc(document):
+def end_doc(document):
     document.add_page_break()
     document.save('%s.docx' % DOC_NAME)
 
@@ -49,5 +51,5 @@ def write(document, text, style_name, font_name, font_size, opts=None):
     for line in lines:
         document.add_paragraph(line, style = style_name)
 
-    save_doc(document)
+    document.save('%s.docx' % DOC_NAME)
     return document

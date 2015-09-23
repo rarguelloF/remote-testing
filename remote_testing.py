@@ -203,7 +203,7 @@ def main():
 
             ssh_conn.disconnect()
 
-    doc_func.save_doc(doc)
+    doc_func.end_doc(doc)
 
 if __name__ == '__main__':
     main()
