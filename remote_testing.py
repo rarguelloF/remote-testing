@@ -63,7 +63,7 @@ class sshConnection():
                     if i<3:
                         print '[+] Error en la conexion SSH: %s.\n' % e
                         print 'Volviendo a intentar conectar... (intento %s de 3)' % i
-                        self.connection = self.connect()
+                        err_code = self.connect()
                         i+=1
                         time.sleep(2)
                     else:
