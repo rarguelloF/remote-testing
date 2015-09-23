@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys
+from time import time
 
 import optparse
 import getpass
@@ -20,6 +21,7 @@ class sshConnection():
         self.user = user
         self.password = password
         self.connection = None
+        self.channel = None
 
     def connect(self):
         try:
@@ -52,9 +54,21 @@ class sshConnection():
             return 1
         else:
             cmd_output = ''
-            # Send the command (non-blocking)
-            stdin, stdout, stderr = self.connection.exec_command(command)
-
+            i = 1
+            while i <= 3:
+                try:
+                    # Send the command (non-blocking)
+                    stdin, stdout, stderr = self.connection.exec_command(command)
+                except SSHException as e:
+                    if i<3:
+                        print '[+] Error en la conexion SSH: %s. Volviendo a intentar conectar... (intento %i de 3)'
+                        self.connection = self.connect()
+                        i+=1
+                        time.sleep(2)
+                    else:
+                        print '[+] Fallo de conexion. Abortando prueba.'
+                        return 1
+                        
             # Wait for the command to terminate
             while not stdout.channel.exit_status_ready():
                 # Only print data if there is data to read in the channel
