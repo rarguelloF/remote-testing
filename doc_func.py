@@ -15,7 +15,7 @@ DOC_NAME = 'DEFAULT_NAME'
 def create(title):
     doc = Document()
     doc.add_heading(title, 0)
-    self.DOC_NAME = title
+    DOC_NAME = title
     return doc
 
 def save_doc(document):
