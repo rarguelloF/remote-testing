@@ -59,7 +59,7 @@ class sshConnection():
                 try:
                     # Send the command (non-blocking)
                     stdin, stdout, stderr = self.connection.exec_command(command)
-                except SSHException as e:
+                except SSHException, e:
                     if i<3:
                         print '[+] Error en la conexion SSH: %s.\n' % e
                         print 'Volviendo a intentar conectar... (intento %s de 3)' % i
@@ -69,6 +69,8 @@ class sshConnection():
                     else:
                         print '[+] Fallo de conexion. Abortando prueba.'
                         return 1
+                else:
+                    i = 4
 
             # Wait for the command to terminate
             while not stdout.channel.exit_status_ready():

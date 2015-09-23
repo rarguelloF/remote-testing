@@ -14,10 +14,10 @@ def custom_test(conn, doc_obj):
     '''
     #Se envia para que muestre la salida de una vez y no haya que pulsar espacio
     resp = conn.send_command('terminal length 0')
-    print resp
+    print '\n' + resp
     cmd = raw_input("Introduzca comando: \n")
     resp = conn.send_command(cmd)
-    print resp
+    print '\n' + resp
     return resp
      
 def OSPF_test(conn, doc_obj):
