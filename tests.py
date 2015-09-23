@@ -20,7 +20,12 @@ def custom_test(conn, doc_obj):
     print '\n' + resp
     return resp
      
-def OSPF_test(conn, doc_obj):
+def ospf_test(conn, doc_obj):
+    '''
+    Comprueba si dentro del equipo hay establecida una sesion OSPF y escribe
+    la salida de los comandos en un .doc.
+    '''
+
     doc_func.write(doc_obj, "Comprobar OSPF", 'tituloprueba', 'garamond', 16, 
         {'all_caps': True})
     doc_func.write(doc_obj, "OBJETIVO", 'tituloprueba2', 'garamond', 12, 
@@ -51,7 +56,12 @@ def OSPF_test(conn, doc_obj):
 
     return 0
      
-def Comprobar_Contador_ACL(conn, doc_obj):
+def comprobar_contador_acl(conn, doc_obj):
+    '''
+    Envia varios paquetes ICMP de prueba para comprobar que la ACL
+    funciona correctamente y escribe la salida de los comandos en un .doc.
+    '''
+
     doc_func.write(doc_obj, "Comprobar_Contador_ACL", 'tituloprueba', 'garamond', 16, 
         {'all_caps': True})
     doc_func.write(doc_obj, "OBJETIVO", 'tituloprueba2', 'garamond', 12, 
@@ -95,3 +105,8 @@ def Comprobar_Contador_ACL(conn, doc_obj):
             {'bold': True, 'color': 'red'})
 
     return 0
+
+def all_tests(conn, doc_obj):
+    custom_test(conn, doc_obj)
+    ospf_test(conn, doc_obj)
+    comprobar_contador_acl(conn, doc_obj)

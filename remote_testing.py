@@ -69,6 +69,8 @@ class sshConnection():
                     else:
                         print '[+] Fallo de conexion. Abortando prueba.'
                         return 1
+                except Exception as e:
+                    print e
                 else:
                     i = 4
 
@@ -118,13 +120,15 @@ def read_config_file(filename):
 def select_test(conn, doc):
     dict_tests = {
         '1': custom_test,
-        '2': OSPF_test,
-        '3': Comprobar_Contador_ACL,
+        '2': ospf_test,
+        '3': comprobar_contador_acl,
+        '4': all_tests
     }
     print "PRUEBAS"
     print "1) Elegir comando"
     print "2) Comprobar sesion OSPF"
     print "3) Comprobar contador ACL"
+    print "4) Realizar todos los tests"
 
     option = raw_input('Selecciona el numero de prueba a realizar: ')
 
@@ -134,7 +138,7 @@ def select_test(conn, doc):
         print 'Opcion no existe.'
 
 def parse_program_options():
-    parser = optparse.OptionParser(usage='Usage: remote-tests.py [options]')
+    parser = optparse.OptionParser(usage='Usage: remote-testing.py [options]')
 
     parser.add_option('-f', help='''Si se especifica, recoge la informacion de los hosts 
         a testear del fichero dado.''', dest='hosts_file', default=None, action='store')
@@ -154,6 +158,15 @@ def parse_program_options():
 
 
 def main():
+    '''
+    Comprueba si el usuario ha introducido como opcion el leer los hosts
+    de un fichero. Si no lo ha hecho, solicita la informacion del host remoto
+    por linea de comandos.
+
+    Una vez se tiene la informacion para establecer una conexion SSH con el host,
+    se solicita al usuario que introduzca las pruebas que quiere realizar.
+    '''
+
     hosts, doc_name = parse_program_options()
 
     doc = doc_func.create(doc_name)
