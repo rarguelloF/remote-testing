@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from time import time
+import time
 
 import optparse
 import getpass
